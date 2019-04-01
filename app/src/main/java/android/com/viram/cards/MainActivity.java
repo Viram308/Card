@@ -8,7 +8,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-int f=1;
+int f=2;
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
