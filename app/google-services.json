@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "801267947568",
+    "firebase_url": "https://playcards-1c6f1.firebaseio.com",
+    "project_id": "playcards-1c6f1",
+    "storage_bucket": "playcards-1c6f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801267947568:android:8d3d1ee6e1912dd4",
+        "android_client_info": {
+          "package_name": "android.com.viram.cards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "801267947568-0r4gpo9he48r5gfhrmsf9uf1i5ag71a3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW5wzumXEv3WFYfUflCwy7GTfgJtjiYOY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
