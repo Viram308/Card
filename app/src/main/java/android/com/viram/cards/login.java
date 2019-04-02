@@ -74,6 +74,9 @@ public class login extends AppCompatActivity {
             public void onClick(View view) {
                 AuthUI.getInstance().signOut(getApplicationContext());
 
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("Code").child(username).removeValue();
+
             }
         });
         cr.setOnClickListener(new OnClickListener() {
