@@ -6,6 +6,44 @@
     android:layout_height="match_parent"
     tools:context="android.com.viram.cards.MainActivity"
     tools:layout_editor_absoluteY="81dp">
-
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login">
+    </ImageView>
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    >
+    <Button android:layout_width="130dp"
+    android:layout_height="50dp"
+        android:id="@+id/cr"
+        android:background="#ff6600"
+        android:text="Create Room"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
+    />
+    <Button android:layout_width="130dp"
+        android:id="@+id/jr"
+        android:layout_height="50dp"
+        android:background="#ff6600"
+        android:text="Join Room"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        />
+    <Button android:layout_width="130dp"
+        android:id="@+id/signout"
+        android:layout_height="50dp"
+        android:background="#ff0000"
+        android:text="sign out"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        />
+</LinearLayout>>
 </android.support.constraint.ConstraintLayout>
