@@ -4,46 +4,231 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="android.com.viram.cards.MainActivity"
-    tools:layout_editor_absoluteY="81dp">
-    <ImageView
+    tools:context=".MainActivity">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login">
-    </ImageView>
-<LinearLayout android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    >
-    <Button android:layout_width="130dp"
-    android:layout_height="50dp"
-        android:id="@+id/cr"
-        android:background="#ff6600"
-        android:text="Create Room"
-        android:textColor="#ffffff"
-        android:textSize="15sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="50dp"
-    />
-    <Button android:layout_width="130dp"
-        android:id="@+id/jr"
-        android:layout_height="50dp"
-        android:background="#ff6600"
-        android:text="Join Room"
-        android:textColor="#ffffff"
-        android:textSize="15sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        />
-    <Button android:layout_width="130dp"
-        android:id="@+id/signout"
-        android:layout_height="50dp"
-        android:background="#ff0000"
-        android:text="sign out"
-        android:textColor="#ffffff"
-        android:textSize="15sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        />
-</LinearLayout>>
+        android:background="#00ff00"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="36dp"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:id="@+id/u0s"
+
+                    />
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="70dp"
+                    android:background="@drawable/border"
+                    android:id="@+id/u0photo"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="#000000"
+                    android:id="@+id/winners"
+                    android:textColor="#ffffff"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="36dp"
+                    android:background="#000000"
+                    android:textColor="#ffffff"
+                    android:id="@+id/u1s"
+                    />
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:background="@drawable/border"
+                    android:id="@+id/u1photo"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                >
+
+
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="45dp"
+                    android:background="#ffffff"
+                    android:text="U0 Cards"
+                    android:gravity="center"
+                    android:id="@+id/myC"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+
+                <Button
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="70dp"
+                    android:id="@+id/see"
+                    android:text="SEE"
+                    android:background="#ffff00"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginTop="45dp"
+                    android:background="#ffffff"
+                    android:text="U1 Cards"
+                    android:gravity="center"
+                    android:id="@+id/oppC"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:background="#ffff00"
+                    android:id="@+id/pack"
+                    android:text="PACK"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:background="#ffff00"
+                    android:id="@+id/show"
+                    android:text="SHOW"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <Button
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="40dp"
+                    android:background="#ffff00"
+                    android:id="@+id/blind"
+                    android:text="BLIND"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.7">
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
