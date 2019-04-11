@@ -103,6 +103,7 @@ public class login extends AppCompatActivity {
             public void onClick(View view) {
                 randnum = ThreadLocalRandom.current().nextInt(1000, 9999 + 1);
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                Toast.makeText(getApplicationContext(),"Code is "+randnum,Toast.LENGTH_SHORT).show();
 
 
                 mDatabase.child("Game").child("u0").child("u0").setValue(username);
@@ -167,6 +168,7 @@ public class login extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     avail = dataSnapshot.child("u1").getValue().toString();
                                     ss=dataSnapshot.child("Code").getValue().toString();
+
                                     if(ete.equals(ss)) {
                                         if (avail.equals("Wait")) {
                                             mDatabase.child("u1").setValue(username);
