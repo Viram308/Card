@@ -9,10 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +34,7 @@ import static android.com.viram.cards.R.*;
 
 public class login extends AppCompatActivity {
     String avail;
+
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
@@ -40,42 +44,49 @@ public class login extends AppCompatActivity {
     FirebaseDatabase database;
     private final int RC_SIGN_IN = 1;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    Button signout,cr,jr;
-    String username="";
+    Button signout, cr, jr, ok, cancel;
+    RelativeLayout edit, mainlogin;
+    String username = "", c, ete;
     int randnum;
+    String ss;
+    EditText et;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_login);
-        signout=findViewById(id.signout);
-        cr=findViewById(R.id.cr);
-        jr=findViewById(R.id.jr);
+        signout = findViewById(id.signout);
+        cr = findViewById(R.id.cr);
+        jr = findViewById(R.id.jr);
+        ok = findViewById(R.id.ok);
 
+        edit = findViewById(id.edit);
+        et = findViewById(R.id.et);
+        mainlogin = findViewById(id.mainlogin);
         database = FirebaseDatabase.getInstance();
 
-               mFirebaseAuth = FirebaseAuth.getInstance();
-            mAuthStateListener = new AuthStateListener() {
-                @Override
-                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    if (user != null) {
-                        Log.d("Status", "Okkkkk");
-                        username = user.getDisplayName();
-                    } else {
-                        startActivityForResult(
-                                AuthUI.getInstance()
-                                        .createSignInIntentBuilder().setIsSmartLockEnabled(false)
-                                        .setAvailableProviders(Arrays.asList(
-                                                new AuthUI.IdpConfig.GoogleBuilder().build(),
-                                                new AuthUI.IdpConfig.EmailBuilder().build()))
-                                        .build(),
-                                RC_SIGN_IN);
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mAuthStateListener = new AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Log.d("Status", "Okkkkk");
+                    username = user.getDisplayName();
+                } else {
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                                    .createSignInIntentBuilder().setIsSmartLockEnabled(false)
+                                    .setAvailableProviders(Arrays.asList(
+                                            new AuthUI.IdpConfig.GoogleBuilder().build(),
+                                            new AuthUI.IdpConfig.EmailBuilder().build()))
+                                    .build(),
+                            RC_SIGN_IN);
 
-                    }
                 }
-            };
+            }
+        };
 
         signout.setOnClickListener(new OnClickListener() {
             @Override
@@ -115,13 +126,11 @@ public class login extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
 
 
-
-
 //Create the bundle
                 Bundle bundle = new Bundle();
 
 //Add your data to bundle
-                bundle.putString("cr","0" );
+                bundle.putString("cr", "0");
 
 //Add the bundle to the intent
                 i.putExtras(bundle);
@@ -132,69 +141,104 @@ public class login extends AppCompatActivity {
 
             }
         });
-
         jr.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                AuthUI.getInstance().signOut(getApplicationContext());
-                final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Game").child("u0");
-
-                ValueEventListener V = new ValueEventListener() {
+                edit.setVisibility(View.VISIBLE);
+                cr.getBackground().setAlpha(100);
+                jr.getBackground().setAlpha(100);
+                signout.getBackground().setAlpha(100);
+                mainlogin.getBackground().setAlpha(100);
+                jr.setEnabled(false);
+                cr.setEnabled(false);
+                signout.setEnabled(false);
+                ok.setOnClickListener(new OnClickListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                     avail=dataSnapshot.child("u1").getValue().toString();
-                        if(avail.equals("Wait"))
-                        {
-                            mDatabase.child("u1").setValue(username);
-                        }
-                    }
+                    public void onClick(View view) {
+                        ete = et.getText().toString();
+                        Toast.makeText(getApplicationContext(),""+ss,Toast.LENGTH_SHORT).show();
 
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                };
-                mDatabase.addValueEventListener(V);
-                mDatabase.child("turn").setValue("5");
-                mDatabase.child("turn").setValue("0");
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Game").child("u0");
 
-
+                            ValueEventListener V = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    avail = dataSnapshot.child("u1").getValue().toString();
+                                    ss=dataSnapshot.child("Code").getValue().toString();
+                                    if(ete.equals(ss)) {
+                                        if (avail.equals("Wait")) {
+                                            mDatabase.child("u1").setValue(username);
+                                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
 
 
 //Create the bundle
-                Bundle bundle = new Bundle();
+                                            Bundle bundle = new Bundle();
 
 //Add your data to bundle
-                bundle.putString("cr","1" );
+                                            bundle.putString("cr", "1");
 
 //Add the bundle to the intent
-                i.putExtras(bundle);
+                                            i.putExtras(bundle);
 
 //Fire that second activity
-                startActivity(i);
-                finish();
+                                            startActivity(i);
+                                            finish();
 
-            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        edit.setVisibility(View.INVISIBLE);
+                                        jr.setEnabled(true);
+                                        cr.setEnabled(true);
+                                        signout.setEnabled(true);
+                                        cr.getBackground().setAlpha(255);
+                                        jr.getBackground().setAlpha(255);
+                                        signout.getBackground().setAlpha(255);
+                                        mainlogin.getBackground().setAlpha(255);
+                                        Toast.makeText(getApplicationContext(),"Sorry!! This Code Doesen't Cantains any room",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            };
+                            mDatabase.addValueEventListener(V);
+                            mDatabase.child("turn").setValue("5");
+                            mDatabase.child("turn").setValue("0");
+
+                        }
+
+
+
+
+
+                });
+        }
+
+
         });
+
+
     }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        try{
-            if(requestCode==RC_SIGN_IN && resultCode==RESULT_OK){
-                Toast.makeText(getApplicationContext(),"Signed In",Toast.LENGTH_SHORT).show();
-            }
-            else if(requestCode==RC_SIGN_IN && resultCode==RESULT_CANCELED){
-                Toast.makeText(getApplicationContext(),"Signed out",Toast.LENGTH_SHORT).show();
+        try {
+            if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
+                Toast.makeText(getApplicationContext(), "Signed In", Toast.LENGTH_SHORT).show();
+            } else if (requestCode == RC_SIGN_IN && resultCode == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
                 finish();
             }
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(),"Signed OUT",Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Signed OUT", Toast.LENGTH_SHORT).show();
             finish();
 
         }

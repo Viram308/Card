@@ -2,6 +2,7 @@ package android.com.viram.cards;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     int user = 0;
     int turn = 1;
+    int kkr=0;
     String avail;
     int cardSeen = 0;
     String ispack0, ispack1, isblind0, isblind1, isshow, issee0, issee1;
@@ -169,13 +171,15 @@ public class MainActivity extends AppCompatActivity {
             return i;
         }
     }
-String w;
-    int rcb=0;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+
+
+    String [] p1=new String[3];
+    String [] p2=new String[3];
+    int f1=0;
+    void createCards()
+    {
+        f1=0;
         Random rand = new Random();
         //type1
         HashSet<String> h = new HashSet<String>();
@@ -192,8 +196,6 @@ String w;
         String [] c5=new String[3];
         String [] c6=new String[3];
 
-        String [] p1=new String[3];
-        String [] p2=new String[3];
         int i=0;
         while(i < 2)
         {
@@ -646,7 +648,7 @@ String w;
         p2[0]+=String.valueOf(s2);
         p2[1]+=String.valueOf(s2);
         p2[2]+=String.valueOf(s2);
-        int f1=0;
+
         if( Character.getNumericValue(p1[0].charAt(2))  < Character.getNumericValue(p2[0].charAt(2)))
         {
             f1=0;
@@ -680,12 +682,22 @@ String w;
                 }
             }
         }
+    }
+
+String w;
+    int rcb=0,srh=0;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+        createCards();
         String f=""+f1;
         Bundle bundle = getIntent().getExtras();
 
 //Extract the data…
-        String s = bundle.getString("cr");
-        if (s.equals("0")) {
+        String s12 = bundle.getString("cr");
+        if (s12.equals("0")) {
             user = 0;
         } else {
             user = 1;
@@ -740,6 +752,7 @@ String w;
                 isshow = dataSnapshot.child("isshow").getValue().toString();
                 avail = dataSnapshot.child("u1").getValue().toString();
                 w=dataSnapshot.child("winner").getValue().toString();
+                Toast.makeText(getApplicationContext(), ""+user, Toast.LENGTH_SHORT).show();
                 if (user == 0) {
                     if (avail.equals("Wait")) {
                         csk.setVisibility(View.VISIBLE);
@@ -782,31 +795,108 @@ String w;
                     u1s.setText("Card Seen");
                 }
                 if (ispack0.equals("1")) {
+                    kkr=1;
                     if (user == 0)
                         winners.setText("You Loose");
                     else
                         winners.setText("You Won");
+
+                    if(srh==0) {
+                        srh=1;
+                        Handler hh = new Handler();
+                        Runnable r = new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+
+                                Bundle bundle = new Bundle();
+
+                                if (user == 1)
+                                    bundle.putString("cr", "1");
+                                else
+                                    bundle.putString("cr", "0");
+//Add the bundle to the intent
+                                i.putExtras(bundle);
+
+//Fire that second activity
+                                startActivity(i);
+
+                                finish();
+                            }
+                        };
+                        hh.postDelayed(r, 3000);
+                    }
                 }
 
                 if (ispack1.equals("1")) {
+                    kkr=1;
                     if (user == 1)
                         winners.setText("You Loose");
                     else
                         winners.setText("You Won");
+
+                    if(srh==0) {
+                     srh=1;
+                        Handler hh = new Handler();
+                        Runnable r = new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+
+                                Bundle bundle = new Bundle();
+
+                                if (user == 1)
+                                    bundle.putString("cr", "1");
+                                else
+                                    bundle.putString("cr", "0");
+//Add the bundle to the intent
+                                i.putExtras(bundle);
+
+
+                                startActivity(i);
+                                finish();
+                            }
+                        };
+                        hh.postDelayed(r, 3000);
+                    }
                 }
                 if (isshow.equals("1")) {
-                    if(user==0 && w.equals("0"))
-                        winners.setText("You Won");
-                    else if(user==0 && w.equals("1"))
-                        winners.setText("You Loose");
-                    else if(user==1 && w.equals("0"))
-                        winners.setText("You Loose");
-                    else if(user==1 && w.equals("1"))
-                        winners.setText("You Won");
+                    if(kkr!=1) {
+                        if (user == 0 && w.equals("0"))
+                            winners.setText("You Won");
+                        else if (user == 0 && w.equals("1"))
+                            winners.setText("You Loose");
+                        else if (user == 1 && w.equals("0"))
+                            winners.setText("You Loose");
+                        else if (user == 1 && w.equals("1"))
+                            winners.setText("You Won");
+                        myC1.setText(pp0 + " " + pp1 + " " + pp2);
+                        oppC1.setText(b0 + " " + b1 + " " + b2);
+                        if(srh==0) {
+                         srh=1;
+                            Handler hh = new Handler();
+                            Runnable r = new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
 
-                    myC1.setText(pp0 + " " + pp1 + " " + pp2);
-                    oppC1.setText(b0 + " " + b1 + " " + b2);
+                                    Bundle bundle = new Bundle();
 
+                                    if (user == 1)
+                                        bundle.putString("cr", "1");
+                                    else
+                                        bundle.putString("cr", "0");
+//Add the bundle to the intent
+                                    i.putExtras(bundle);
+
+                                    startActivity(i);
+                                    finish();
+                                }
+                            };
+                            hh.postDelayed(r, 3000);
+                        }
+
+                    }
                 }
                 if(user==0) {
                     Handler hu = new Handler();
@@ -833,6 +923,7 @@ String w;
 
         ref.child("turn").setValue("1");
         ref.child("turn").setValue("0");
+
         ref.child("seen").setValue("0");
         ref.child("issee0").setValue("0");
 
@@ -870,6 +961,7 @@ String w;
                 } else {
                     ref.child("ispack1").setValue("1");
                 }
+
             }
         });
 
