@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,16 +51,19 @@ public class login extends AppCompatActivity {
     int randnum;
     String ss;
     EditText et;
+    ImageView gg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_login);
+        Toast.makeText(getApplicationContext(),"Login",Toast.LENGTH_SHORT).show();
         signout = findViewById(id.signout);
         cr = findViewById(R.id.cr);
         jr = findViewById(R.id.jr);
         ok = findViewById(R.id.ok);
+
 
         edit = findViewById(id.edit);
         et = findViewById(R.id.et);
@@ -157,7 +161,7 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         ete = et.getText().toString();
-                        Toast.makeText(getApplicationContext(),""+ss,Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -183,6 +187,13 @@ public class login extends AppCompatActivity {
 
 //Add the bundle to the intent
                                             i.putExtras(bundle);
+                                            jr.setEnabled(true);
+                                            cr.setEnabled(true);
+                                            signout.setEnabled(true);
+                                            cr.getBackground().setAlpha(255);
+                                            jr.getBackground().setAlpha(255);
+                                            signout.getBackground().setAlpha(255);
+                                            mainlogin.getBackground().setAlpha(255);
 
 //Fire that second activity
                                             startActivity(i);
@@ -235,6 +246,7 @@ public class login extends AppCompatActivity {
         try {
             if (requestCode == RC_SIGN_IN && resultCode == RESULT_OK) {
                 Toast.makeText(getApplicationContext(), "Signed In", Toast.LENGTH_SHORT).show();
+
             } else if (requestCode == RC_SIGN_IN && resultCode == RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
                 finish();

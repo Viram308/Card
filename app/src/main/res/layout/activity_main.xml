@@ -10,7 +10,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:id="@+id/csk"
         >
         <TextView
@@ -27,7 +27,7 @@
 
     </LinearLayout>
     <LinearLayout
-        android:visibility="visible"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/table"
@@ -56,7 +56,7 @@ android:layout_marginTop="50dp"
                     android:layout_width="80dp"
                     android:layout_height="100dp"
                     android:layout_gravity="end"
-
+android:id="@+id/l1"
                     android:background="@drawable/border"
 
                     android:orientation="vertical"
@@ -141,7 +141,7 @@ android:layout_marginTop="50dp"
                 <LinearLayout
                     android:layout_width="80dp"
                     android:layout_height="100dp"
-
+android:id="@+id/l2"
                     android:background="@drawable/border"
 
                     android:orientation="vertical"
@@ -161,7 +161,7 @@ android:layout_marginTop="50dp"
                     android:layout_width="70dp"
                     android:layout_height="50dp"
                     android:background="@drawable/c0"
-                    android:id="@+id/u1phpto"
+                    android:id="@+id/u1photo"
                     android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="70dp"
@@ -211,16 +211,18 @@ android:layout_marginTop="50dp"
 
 
 
-                <TextView
-                    android:layout_width="100dp"
-
-                    android:layout_height="60dp"
-android:layout_marginLeft="24dp"
-                    android:background="#ffffff"
-                    android:text="U0 Cards"
-                    android:gravity="center"
-                    android:id="@+id/myC"
-                    />
+                <ImageView android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:id="@+id/myC1"
+                    android:src="@drawable/cardd"/>
+                <ImageView android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:id="@+id/myC2"
+                    android:src="@drawable/cardd"/>
+                <ImageView android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:id="@+id/myC3"
+                    android:src="@drawable/cardd"/>
 
             </LinearLayout>
 
@@ -229,18 +231,21 @@ android:layout_marginLeft="24dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 >
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_marginRight="7dp"
-                    android:layout_height="60dp"
-                    android:background="#ffffff"
-                    android:text="U1 Cards"
-                    android:gravity="center"
-                    android:id="@+id/oppC"
-                    />
+                <ImageView android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:id="@+id/oppC1"
+                    android:src="@drawable/cardd"/>
+                <ImageView android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:id="@+id/oppC2"
+                    android:src="@drawable/cardd"/>
+                <ImageView android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:id="@+id/oppC3"
+                    android:src="@drawable/cardd"/>
             </LinearLayout>
 
 
