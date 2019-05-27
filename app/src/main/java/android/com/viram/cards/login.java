@@ -35,7 +35,7 @@ import static android.com.viram.cards.R.*;
 
 public class login extends AppCompatActivity {
     String avail;
-
+    String gone;
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
